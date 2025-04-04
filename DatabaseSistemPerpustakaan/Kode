@@ -1,0 +1,56 @@
+CREATE TABLE Anggota (
+    ID_Anggota INT PRIMARY KEY AUTO_INCREMENT,
+    Nama VARCHAR(100) NOT NULL,
+    Alamat TEXT,
+    No_Telepon VARCHAR(15),
+    Email VARCHAR(100) UNIQUE,
+    Tanggal_Pendaftaran DATE NOT NULL
+);
+CREATE TABLE Petugas (
+    ID_Petugas INT PRIMARY KEY AUTO_INCREMENT,
+    Nama VARCHAR(100) NOT NULL,
+    Username VARCHAR(50) UNIQUE NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    No_Telepon VARCHAR(15)
+);
+CREATE TABLE Kategori_Buku (
+    ID_Kategori INT PRIMARY KEY AUTO_INCREMENT,
+    Nama_Kategori VARCHAR(50) NOT NULL UNIQUE
+);
+CREATE TABLE Buku (
+    ID_Buku INT PRIMARY KEY AUTO_INCREMENT,
+    Judul VARCHAR(200) NOT NULL,
+    Pengarang VARCHAR(100),
+    Penerbit VARCHAR(100),
+    Tahun_Terbit YEAR,
+    ISBN VARCHAR(20) UNIQUE,
+    ID_Kategori INT,
+    Jumlah_Stok INT DEFAULT 1,
+    FOREIGN KEY (ID_Kategori) REFERENCES Kategori_Buku(ID_Kategori) ON DELETE SET NULL
+);
+CREATE TABLE Peminjaman (
+    ID_Peminjaman INT PRIMARY KEY AUTO_INCREMENT,
+    ID_Anggota INT,
+    ID_Buku INT,
+    ID_Petugas INT,
+    Tanggal_Peminjaman DATE NOT NULL,
+    Tanggal_JatuhTempo DATE NOT NULL,
+    Status_Peminjaman ENUM('Dipinjam', 'Dikembalikan') DEFAULT 'Dipinjam',
+    FOREIGN KEY (ID_Anggota) REFERENCES Anggota(ID_Anggota) ON DELETE CASCADE,
+    FOREIGN KEY (ID_Buku) REFERENCES Buku(ID_Buku) ON DELETE CASCADE,
+    FOREIGN KEY (ID_Petugas) REFERENCES Petugas(ID_Petugas) ON DELETE SET NULL
+);
+CREATE TABLE Pengembalian (
+    ID_Pengembalian INT PRIMARY KEY AUTO_INCREMENT,
+    ID_Peminjaman INT UNIQUE,
+    Tanggal_Pengembalian DATE NOT NULL,
+    Denda DECIMAL(10,2) DEFAULT 0,
+    FOREIGN KEY (ID_Peminjaman) REFERENCES Peminjaman(ID_Peminjaman) ON DELETE CASCADE
+);
+CREATE TABLE Denda (
+    ID_Denda INT PRIMARY KEY AUTO_INCREMENT,
+    ID_Anggota INT,
+    Jumlah_Denda DECIMAL(10,2) NOT NULL,
+    Status_Pembayaran ENUM('Belum Dibayar', 'Sudah Dibayar') DEFAULT 'Belum Dibayar',
+    FOREIGN KEY (ID_Anggota) REFERENCES Anggota(ID_Anggota) ON DELETE CASCADE
+);
