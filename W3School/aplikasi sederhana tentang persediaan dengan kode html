@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplikasi Persediaan</title>
+
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; background-color: #ffc0cb; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+th { background-color: #f4f4f4; }
+button { margin: 5px; }
+tbody tr:nth-child(odd) { background-color: #ffffff; }
+</style>
+</head>
+<body>
+<h2>Manajemen Persediaan</h2>
+<input type="text" id="itemName" placeholder="Nama Barang">
+<input type="number" id="itemQuantity" placeholder="Jumlah">
+<button onclick="addItem()">Tambah</button>
+<table>
+<thead>
+<tr>
+<th>Nama Barang</th>
+<th>Jumlah</th>
+<th>Aksi</th>
+</tr>
+</thead>
+<tbody id="inventoryList"></tbody>
+</table>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+function addItem() {
+let name = document.getElementById("itemName").value;
+let quantity = document.getElementById("itemQuantity").value;
+if (name === "" || quantity === "") {
+alert("Nama barang dan jumlah harus diisi!");
+return;
+}
+let table = document.getElementById("inventoryList");
+let row = table.insertRow();
+let cell1 = row.insertCell(0);
+let cell2 = row.insertCell(1);
+let cell3 = row.insertCell(2);
+cell1.innerText = name;
+cell2.innerText = quantity;
+
+cell3.innerHTML = `<button onclick="editItem(this)">Edit</button>
+<button onclick="deleteItem(this)">Hapus</button>`;
+document.getElementById("itemName").value = "";
+document.getElementById("itemQuantity").value = "";
+}
+function editItem(button) {
+let row = button.parentElement.parentElement;
+let name = prompt("Edit Nama Barang:", row.cells[0].innerText);
+let quantity = prompt("Edit Jumlah:", row.cells[1].innerText);
+if (name !== null && quantity !== null) {
+row.cells[0].innerText = name;
+row.cells[1].innerText = quantity;
+}
+}
+function deleteItem(button) {
+if (confirm("Apakah Anda yakin ingin menghapus item ini?")) {
+let row = button.parentElement.parentElement;
+row.remove();
+}
+}
+window.addItem = addItem;
+window.editItem = editItem;
+window.deleteItem = deleteItem;
+});
+</script>
+</body>
+</html>
