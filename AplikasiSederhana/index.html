@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplikasi Persediaan & Penjualan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Manajemen Persediaan & Penjualan</h1>
+    
+    <div>
+        <h2>Tambah Produk</h2>
+        <input type="text" id="productName" placeholder="Nama Produk">
+        <input type="number" id="productStock" placeholder="Stok">
+        <input type="number" id="productPrice" placeholder="Harga">
+        <button onclick="addProduct()">Tambah</button>
+    </div>
+    
+    <div>
+        <h2>Daftar Produk</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nama</th>
+                    <th>Stok</th>
+                    <th>Harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="productList"></tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
