@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aesthetic Autumn Table</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #f4e6d7;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+
+h2 {
+color: #8b1e3f;
+margin-bottom: 20px;
+}
+table {
+width: 80%;
+border-collapse: collapse;
+background: #fff8e7;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+border-radius: 10px;
+overflow: hidden;
+}
+th, td {
+padding: 12px;
+text-align: left;
+}
+th {
+background-color: #8b1e3f; /* Maroon */
+color: #fff;
+font-weight: bold;
+}
+tr:nth-child(odd) {
+background-color: #f5c37f; /* Warm Orange */
+}
+tr:nth-child(even) {
+background-color: #3b5998; /* Deep Blue */
+color: #fff;
+}
+tr:hover {
+background-color: #e48f45; /* Muted Orange */
+transition: 0.3s;
+color: white;
+}
+</style>
+</head>
+<body>
+<h2>HTML Table</h2>
+<table>
+<tr>
+<th>Company</th>
+<th>Contact</th>
+<th>Country</th>
+
+</tr>
+<tr>
+<td>Alfreds Futterkiste</td>
+<td>Maria Anders</td>
+<td>Germany</td>
+</tr>
+<tr>
+<td>Centro comercial Moctezuma</td>
+<td>Francisco Chang</td>
+<td>Mexico</td>
+</tr>
+<tr>
+<td>Ernst Handel</td>
+<td>Roland Mendel</td>
+<td>Austria</td>
+</tr>
+<tr>
+<td>Island Trading</td>
+<td>Helen Bennett</td>
+<td>UK</td>
+</tr>
+<tr>
+<td>Laughing Bacchus Winecellars</td>
+<td>Yoshi Tannamuri</td>
+<td>Canada</td>
+</tr>
+<tr>
+<td>Magazzini Alimentari Riuniti</td>
+<td>Giovanni Rovelli</td>
+<td>Italy</td>
+</tr>
+</table>
+</body>
+</html>
